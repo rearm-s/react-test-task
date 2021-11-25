@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Col, Container, Row} from "react-bootstrap";
 import Header from "./components/Header";
 import Home from "./pages/Home";
+import Employee from "./pages/Employee";
 
 const Global = createGlobalStyle`
   * {
@@ -31,6 +32,9 @@ function App() {
                 </Row>
                 <Row>
                     <Col><Home /></Col>
+                </Row>
+                <Row>
+                    <Col><Employee /></Col>
                 </Row>
             </Container>
         </StyledWrapper>

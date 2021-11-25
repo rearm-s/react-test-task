@@ -5,7 +5,6 @@ import {Button, FormControl, InputGroup} from "react-bootstrap";
 const StyledSearchBox = styled.div`
 `
 
-
 const SearchBox = ({employee, onChangeEmployee, onClickButton}) => {
 
     return (
