@@ -1,6 +1,7 @@
 import React from 'react';
 import {Table} from "react-bootstrap";
 import styled from "styled-components";
+import {useSelector} from "react-redux";
 
 
 const StyledEmployee = styled.div`
@@ -9,16 +10,13 @@ const StyledEmployee = styled.div`
 
 const Employee = () => {
 
-    // const data = useEmployeeName(value)
-    //
-    // if (!data) return null;
+    const data = useSelector(({employee}) => employee.data)
+    const employeeName = useSelector(({employee}) => employee.employeeName)
 
-    const value = '-' // заглушка
-    const data = ['-','-'] // заглушка
+    const [position, subordinates] = data
 
     return (
         <StyledEmployee>
-            <h3>Page employee (without React Router)</h3>
             <Table striped bordered hover>
                 <thead>
                 <tr>
@@ -29,10 +27,10 @@ const Employee = () => {
                 </thead>
                 <tbody>
                 <tr>
-                    <td>{value ? value : '-'}</td>
-                    <td>{data[0]}</td>
-                    <td>{typeof(data[1]) == 'object'
-                        ? data[1]['direct-subordinates'].map(subo => <ul key={subo}><li>{subo}</li></ul>)
+                    <td>{employeeName ? employeeName : '-'}</td>
+                    <td>{position}</td>
+                    <td>{typeof(subordinates) == 'object'
+                        ? subordinates['direct-subordinates'].map(subo => <ul key={subo}><li>{subo}</li></ul>)
                         : '-'}</td>
                 </tr>
                 </tbody>
