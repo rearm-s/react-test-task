@@ -1,6 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import SearchBox from "../components/SearchBox";
+import {useDispatch, useSelector} from "react-redux";
+import {setEmployeeName} from "../redux/reducers/employee";
+import {fetchEmployee} from "../redux/actions/employee";
+
 
 const StyledHome = styled.div`
   padding: 20px;
@@ -9,22 +13,24 @@ const StyledHome = styled.div`
 
 const Home = () => {
 
-    const [employee, setEmployee] = useState('');
-    const [value, setValue] = useState(employee);
+
+    const dispatch = useDispatch();
+    const employeeName = useSelector(({employee}) => employee.employeeName)
+
+    console.log(employeeName)
 
     const handleOnChange = (e) => {
-        setEmployee(e.target.value)
+        dispatch(setEmployeeName(e.target.value))
     }
 
     const handleOnClick = () => {
-        setValue(employee)
+        dispatch(fetchEmployee(employeeName))
     }
 
-    // develop
 
     return (
         <StyledHome>
-            <SearchBox employee={employee} onChangeEmployee={handleOnChange} onClickButton={handleOnClick} />
+            <SearchBox employee={employeeName} onChangeEmployee={handleOnChange} onClickButton={handleOnClick} />
         </StyledHome>
     );
 };
