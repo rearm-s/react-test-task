@@ -3,16 +3,13 @@ import styled from 'styled-components';
 import SearchBox from "../components/SearchBox";
 
 const StyledHome = styled.div`
-  padding-top: 20px;
-  @media (max-width: 1244px) {
-    padding: 20px;
-  }
+  padding: 20px;
 `
 
 
 const Home = () => {
 
-    const [employee, setEmployee] = useState('Leanna Hogg');
+    const [employee, setEmployee] = useState('');
     const [value, setValue] = useState(employee);
 
     const handleOnChange = (e) => {

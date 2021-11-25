@@ -18,7 +18,6 @@ const SearchBox = ({employee, onChangeEmployee, onClickButton}) => {
                 />
                 <Button
                     variant="outline-secondary"
-                    id="button-addon2"
                     onClick={onClickButton}
                 >
                     Search
