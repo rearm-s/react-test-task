@@ -16,7 +16,6 @@ const Home = () => {
     const history = useHistory();
 
     useEffect(() => {
-        // dispatch(fetchData())
         dispatch(asyncSetData())
     }, [])
 
@@ -30,7 +29,6 @@ const Home = () => {
             dispatch(setError(true))
             dispatch(setEmployeeName(''))
         } else {
-            // dispatch(fetchEmployee(employeeName))
             dispatch(asyncSetEmployeeData(employeeName))
             history.push(`/employee/${employeeName}`)
             dispatch(setError(false))

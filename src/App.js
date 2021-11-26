@@ -7,7 +7,7 @@ import Employee from "./components/Employee";
 import {Route, BrowserRouter as Router, Switch, Redirect} from "react-router-dom";
 import {Provider} from "react-redux";
 import store from "./redux/store";
-import {Global, StyledWrapper} from "./StyledApp";
+import {Global, StyledWrapper} from "./styled/_Global";
 
 
 function App() {
