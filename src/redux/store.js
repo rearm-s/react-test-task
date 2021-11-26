@@ -1,10 +1,9 @@
-import {applyMiddleware, combineReducers, createStore} from "redux";
-import employeeReducer from "./reducers/employee";
-import thunk from "redux-thunk";
+import {applyMiddleware, createStore} from "redux";
+import rootReducer from "./rootReducer";
+import {rootWatcher, sagaMiddleware} from "./saga";
 
+const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
 
-const rootReducer = combineReducers({
-    employee: employeeReducer
-})
+sagaMiddleware.run(rootWatcher)
 
-export const store = createStore(rootReducer, applyMiddleware(thunk));
+export default store;
