@@ -20,7 +20,6 @@ const Home = () => {
         dispatch(asyncSetData());
     }, [])
 
-
     const handleOnChange = (e) => {
         dispatch(setEmployeeName(e.target.value));
     }

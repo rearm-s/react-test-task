@@ -57,25 +57,25 @@ export const setError = (payload) => ({type: SET_ERROR, payload});
 
 
 export function* workerFetchData() {
-    const data = yield call(() => http())
-    yield put(setData(data))
+    const data = yield call(() => http());
+    yield put(setData(data));
 };
 
 export function* workerFetchEmployee(action) {
     try {
         const name = action.payload;
         const data = yield call(() => http(name));
-        yield put(setEmployeeData(data))
+        yield put(setEmployeeData(data));
     }
     catch (e) {
-        yield put(setError(true))
+        yield put(setError(true));
     }
 };
 
 export function* watcherFetchData() {
-    yield takeEvery(ASYNC_SET_DATA, workerFetchData)
+    yield takeEvery(ASYNC_SET_DATA, workerFetchData);
 };
 
 export function* watcherFetchEmployee() {
-    yield takeEvery(ASYNC_SET_EMPLOYEE_DATA, workerFetchEmployee)
+    yield takeEvery(ASYNC_SET_EMPLOYEE_DATA, workerFetchEmployee);
 };

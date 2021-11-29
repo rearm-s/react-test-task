@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import * as variables from './variables'
+import * as variables from './variables';
 
 export const StyledWrapper = styled.div`
   width: ${variables.width};
