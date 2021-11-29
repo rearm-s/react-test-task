@@ -1,18 +1,28 @@
-import styled, {createGlobalStyle} from "styled-components";
+import styled from 'styled-components';
 
-export const Global = createGlobalStyle`
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-`
+import * as variables from './variables'
 
 export const StyledWrapper = styled.div`
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  border: 1px solid #333;
-  height: 100vh;
+  width: ${variables.width};
+  max-width: ${variables.maxWidth};
+  margin: ${variables.margin};
+  border: ${variables.border};
+  height: ${variables.height};
 `
 
+export const StyledContainer = styled.div`
+  padding-left: ${variables.paddingLeft};
+  padding-right: ${variables.paddingRight};
+`;
+
+export const theme = {
+    colors: {
+        primary: `${variables.primary}`,
+        secondary: `${variables.secondary}`,
+    },
+    media: {
+        phone: `${variables.phone}`,
+        tablet: `${variables.tablet}`,
+        screen: `${variables.screen}`
+    }
+};

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 const URL = 'http://api.additivasia.io/api/v1/assignment/employees/';
 

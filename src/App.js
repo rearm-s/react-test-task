@@ -1,22 +1,21 @@
-import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import {Col, Container, Row} from "react-bootstrap";
-import Header from "./components/Header";
-import Home from "./components/Home";
-import Employee from "./components/Employee";
-import {Route, BrowserRouter as Router, Switch, Redirect} from "react-router-dom";
-import {Provider} from "react-redux";
-import store from "./redux/store";
-import {Global, StyledWrapper} from "./styled/_Global";
+import React from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Provider } from 'react-redux';
+import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
 
+import { Employee, Header, Home } from './components';
 
-function App() {
-    return <>
-        <Global/>
-        <Router>
-            <StyledWrapper>
-                <Provider store={store}>
-                    <Container fluid style={{paddingLeft: 0, paddingRight: 0}}>
+import { StyledContainer, StyledWrapper, theme } from './styled/_Global';
+import store from './redux/store';
+
+const App = () => (
+    <ThemeProvider theme={theme}>
+        <StyledWrapper>
+            <Provider store={store}>
+                <Router>
+                    <Container fluid as={StyledContainer}>
                         <Row>
                             <Col><Header/></Col>
                         </Row>
@@ -31,13 +30,14 @@ function App() {
                                     <Col><Employee/></Col>
                                 </Row>
                             </Route>
-                            <Redirect to={"/"} />
+                            <Redirect to={"/"}/>
                         </Switch>
                     </Container>
-                </Provider>
-            </StyledWrapper>
-        </Router>
-    </>
-}
+
+                </Router>
+            </Provider>
+        </StyledWrapper>
+    </ThemeProvider>
+);
 
 export default App;

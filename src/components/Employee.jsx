@@ -1,24 +1,44 @@
-import React from "react";
-import {Button, Table} from "react-bootstrap";
-import {useSelector} from "react-redux";
-import {useHistory} from "react-router-dom";
-import {StyledEmployee} from "../styled/Employee";
+import React, { useEffect } from 'react';
+import { Button, Table } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
+
+import { Error } from './index';
+
+import { StyledEmployee } from '../styled/Employee';
+import { asyncSetEmployeeData, setError } from '../redux/ducks/employee';
 
 
 const Employee = () => {
 
-    const employeeData = useSelector(({employee}) => employee.employeeData)
-    const employeeName = useSelector(({employee}) => employee.employeeName)
+    const dispatch = useDispatch();
+    const employeeData = useSelector(({employee}) => employee.employeeData);
     const history = useHistory();
+    const isError = useSelector(({employee}) => employee.isError);
 
-    const [position, subordinates] = employeeData
+    const { name } =  useParams();
 
-    const handleOnClick = () => {
-        history.goBack()
+    useEffect(() => {
+        dispatch(asyncSetEmployeeData(name));
+    }, [name])
+
+    const [position, subordinates] = employeeData;
+
+    const handleOnBack = () => {
+        history.goBack();
+        dispatch(setError(false));
+    }
+
+    const handleOnSearchSubo = (name) => {
+        history.push(`/employee/${name}`);
+        dispatch(asyncSetEmployeeData(name));
     }
 
     return (
         <StyledEmployee>
+            {
+                isError && <Error />
+            }
             <Table striped bordered hover>
                 <thead>
                 <tr>
@@ -29,17 +49,20 @@ const Employee = () => {
                 </thead>
                 <tbody>
                 <tr>
-                    <td>{employeeName ? employeeName : "-"}</td>
+                    <td>{isError ? "-" : name}</td>
                     <td>{position ? position : "-"}</td>
-                    <td>{typeof(subordinates) == "object"
-                        ? subordinates["direct-subordinates"].map(subo => <ul key={subo}><li>{subo}</li></ul>)
+                    <td>{typeof(subordinates) === "object"
+                        ? subordinates["direct-subordinates"].map(subo =>
+                            <ul key={subo}>
+                                <li onClick={() => handleOnSearchSubo(subo)}>{subo}</li>
+                            </ul>)
                         : "-"}</td>
                 </tr>
                 </tbody>
             </Table>
             <Button
                 variant="outline-secondary"
-                onClick={handleOnClick}
+                onClick={handleOnBack}
             >
                 Go back
             </Button>

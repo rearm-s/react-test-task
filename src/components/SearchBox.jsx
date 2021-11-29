@@ -1,7 +1,7 @@
-import React  from "react";
-import {Button, FormControl, InputGroup} from "react-bootstrap";
+import React  from 'react';
+import { Button, FormControl, InputGroup } from 'react-bootstrap';
 
-export default ({employee, onChangeEmployee, onClickButton}) => (
+const SearchBox = ({employee, onChangeEmployee, onSearchEmployee}) => (
         <InputGroup className="mb-3">
             <FormControl
                 value={employee}
@@ -10,9 +10,11 @@ export default ({employee, onChangeEmployee, onClickButton}) => (
             />
             <Button
                 variant="outline-secondary"
-                onClick={onClickButton}
+                onClick={onSearchEmployee}
             >
                 Search
             </Button>
         </InputGroup>
-)
+);
+
+export default SearchBox;
