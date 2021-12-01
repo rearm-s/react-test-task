@@ -3,7 +3,7 @@ import { Button, FormControl, InputGroup } from 'react-bootstrap';
 
 interface propsType {
     employee: string;
-    onChangeEmployee: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onChangeEmployee: (event: React.ChangeEvent<HTMLInputElement>) => void;
     onSearchEmployee: () => void;
 }
 

@@ -33,7 +33,6 @@ const App = () => (
                             <Redirect to={"/"}/>
                         </Switch>
                     </Container>
-
                 </Router>
             </Provider>
         </StyledWrapper>

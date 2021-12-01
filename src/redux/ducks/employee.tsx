@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { SagaIterator } from 'redux-saga';
 
-import {http} from '../../api';
+import { http } from '../../api';
 
 
 // -------------------- type for actions ------------------------------
@@ -74,22 +74,22 @@ const employeeReducer = (state = initialState, action: EmployeeAction): Employee
             return {
                 ...state,
                 employeeName: action.payload
-            }
+            };
         case EmployeeActionTypes.SET_DATA:
             return {
                 ...state,
                 data: action.payload
-            }
+            };
         case EmployeeActionTypes.SET_EMPLOYEE_DATA:
             return {
                 ...state,
                 employeeData: action.payload
-            }
+            };
         case EmployeeActionTypes.SET_ERROR:
             return {
                 ...state,
                 isError: action.payload
-            }
+            };
         default:
             return state;
     }
@@ -99,7 +99,7 @@ export default employeeReducer;
 
 export const setEmployeeName = (payload: string): setEmployeeNameAction => ({type: EmployeeActionTypes.SET_EMPLOYEE_NAME, payload});
 
-export const setData = (payload: string[]): setDataAction => ({type: EmployeeActionTypes.SET_DATA, payload})
+export const setData = (payload: string[]): setDataAction => ({type: EmployeeActionTypes.SET_DATA, payload});
 
 export interface getDataAction {
     type: EmployeeActionTypes.GET_DATA;

@@ -1,8 +1,8 @@
-import React, { useEffect  } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Table } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-import { Dispatch } from "redux";
+import { Dispatch } from 'redux';
 
 import { Error, SearchBox } from './index';
 
@@ -20,29 +20,27 @@ const Home = (): JSX.Element => {
 
     useEffect(() => {
         dispatch(getData());
-    }, [])
+    }, []);
 
-    const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(setEmployeeName(e.target.value));
-    }
+    const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch(setEmployeeName(event.target.value));
+    };
 
     const handleOnSearch = () => {
-        if(!data.includes(employeeName)) {
-            dispatch(setError(true));
-            dispatch(setEmployeeName(''));
-        } else {
+        const hasError = !data.includes(employeeName);
+        if (!hasError) {
             history.push(`/employee/${employeeName}`);
-            dispatch(setError(false));
-            dispatch(setEmployeeName(''));
         }
-    }
+        dispatch(setError(!!hasError));
+        dispatch(setEmployeeName(''));
+    };
 
     return (
         <StyledHome>
             <SearchBox employee={employeeName} onChangeEmployee={handleOnChange} onSearchEmployee={handleOnSearch}/>
-            {isError &&
-            <Error />
-            }
+            {isError && (
+                <Error/>
+            )}
             <Table striped bordered hover>
                 <thead>
                 <tr>
@@ -50,13 +48,11 @@ const Home = (): JSX.Element => {
                 </tr>
                 </thead>
                 <tbody>
-                {data &&
-                data.map((emp: any) => {
-                    return <tr key={emp}>
+                {data && (
+                    data.map((emp: string) => (<tr key={emp}>
                         <td>{emp}</td>
-                    </tr>
-                })
-                }
+                    </tr>))
+                )}
                 </tbody>
             </Table>
         </StyledHome>

@@ -8,7 +8,7 @@ export const StyledWrapper = styled.div`
   margin: ${variables.margin};
   border: ${variables.border};
   height: ${variables.height};
-`
+`;
 
 export const StyledContainer = styled.div`
   padding-left: ${variables.paddingLeft};
@@ -17,12 +17,12 @@ export const StyledContainer = styled.div`
 
 export const theme = {
     colors: {
-        primary: `${variables.primary}`,
-        secondary: `${variables.secondary}`,
+        primary: `${variables.primaryColor}`,
+        secondary: `${variables.secondaryColor}`,
     },
     media: {
-        phone: `${variables.phone}`,
-        tablet: `${variables.tablet}`,
-        screen: `${variables.screen}`
+        phone: `${variables.mediaPhone}`,
+        tablet: `${variables.mediaTablet}`,
+        screen: `${variables.mediaScreen}`
     }
 };

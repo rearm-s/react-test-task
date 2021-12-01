@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import {Dispatch} from 'redux';
+import { Dispatch } from 'redux';
 
 import { Error } from './index';
 
@@ -21,29 +21,29 @@ const Employee = (): JSX.Element => {
     const history = useHistory();
     const isError = useSelector(({employee}: RootState) => employee.isError);
 
-    const { name } =  useParams<RouteParams>();
+    const {name} = useParams<RouteParams>();
 
     useEffect(() => {
         dispatch(getEmployeeData(name));
-    }, [name])
+    }, [name]);
 
     const [position, subordinates] = employeeData;
 
     const handleOnBack = () => {
         history.goBack();
         dispatch(setError(false));
-    }
+    };
 
     const handleOnSearchSubo = (name: string) => {
         history.push(`/employee/${name}`);
         dispatch(getEmployeeData(name));
-    }
+    };
 
     return (
         <StyledEmployee>
-            {
-                isError && <Error />
-            }
+            {isError && (
+                <Error/>
+            )}
             <Table striped bordered hover>
                 <thead>
                 <tr>
@@ -56,7 +56,7 @@ const Employee = (): JSX.Element => {
                 <tr>
                     <td>{isError ? "-" : name}</td>
                     <td>{position ? position : "-"}</td>
-                    <td>{typeof(subordinates) === "object"
+                    <td>{typeof (subordinates) === "object"
                         ? subordinates["direct-subordinates"].map((subo: string) =>
                             <ul key={subo}>
                                 <li onClick={() => handleOnSearchSubo(subo)}>{subo}</li>
