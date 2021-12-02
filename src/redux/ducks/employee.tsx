@@ -6,9 +6,9 @@ import { http } from '../../api';
 enum EmployeeActionTypes {
     SET_EMPLOYEE_NAME = 'app/employee/SET_EMPLOYEE_NAME',
     SET_DATA = 'app/employee/SET_DATA',
-    GET_DATA = 'app/employee/ASYNC_SET_DATA',
+    GET_DATA = 'app/employee/ASYNC_GET_DATA',
     SET_EMPLOYEE_DATA = 'app/employee/SET_EMPLOYEE_DATA',
-    GET_EMPLOYEE_DATA = 'app/employee/ASYNC_SET_EMPLOYEE_DATA',
+    GET_EMPLOYEE_DATA = 'app/employee/ASYNC_GET_EMPLOYEE_DATA',
     SET_ERROR = 'app/employee/SET_ERROR'
 }
 
@@ -40,9 +40,7 @@ export type EmployeeAction =
     getDataAction |
     getEmployeeDataAction;
 
-export interface EmployeeDataType {
-    'direct-subordinates': string[];
-}
+export type EmployeeDataType = (string | {'direct-subordinates': string[];});
 
 export interface EmployeeState {
     employeeName: string;
