@@ -2,9 +2,8 @@ import { applyMiddleware, createStore, combineReducers } from 'redux';
 import { all } from 'redux-saga/effects';
 import createMiddleware from 'redux-saga';
 
-
 import employee, { EmployeeState } from './ducks/employee';
-import {watcherFetchData, watcherFetchEmployee} from './ducks/employee';
+import { watcherFetchData, watcherFetchEmployee } from './ducks/employee';
 
 const rootReducer = combineReducers({
     employee
@@ -28,4 +27,3 @@ export function* rootWatcher() {
 sagaMiddleware.run(rootWatcher);
 
 export default store;
-

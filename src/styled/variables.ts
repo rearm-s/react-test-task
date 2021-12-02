@@ -2,8 +2,9 @@ export const maxWidth = '1400px';
 export const width = '100%';
 export const height = '100vh';
 
-export const primaryColor = 'black';
-export const secondaryColor = 'blue';
+export const primaryColor = '#333';
+export const secondaryColor = '#fff';
+export const linkColor = '#0982c9';
 
 export const margin = '0 auto';
 export const border = '1px solid #333';

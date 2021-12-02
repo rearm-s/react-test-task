@@ -54,14 +54,17 @@ const Employee = (): JSX.Element => {
                 </thead>
                 <tbody>
                 <tr>
-                    <td>{isError ? "-" : name}</td>
-                    <td>{position ? position : "-"}</td>
-                    <td>{typeof (subordinates) === "object"
-                        ? subordinates["direct-subordinates"].map((subo: string) =>
-                            <ul key={subo}>
-                                <li onClick={() => handleOnSearchSubo(subo)}>{subo}</li>
-                            </ul>)
-                        : "-"}</td>
+                    <td>{isError ? '-' : name}</td>
+                    <td>{position ? position : '-'}</td>
+                    <td>{typeof (subordinates) === 'object'
+                        ? (
+                            subordinates['direct-subordinates'].map((subo: string) => (
+                                <ul key={subo}>
+                                    <li onClick={() => handleOnSearchSubo(subo)}>{subo}</li>
+                                </ul>))
+                        )
+                        : '-'}
+                    </td>
                 </tr>
                 </tbody>
             </Table>

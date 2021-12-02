@@ -30,7 +30,7 @@ const App = () => (
                                     <Col><Employee/></Col>
                                 </Row>
                             </Route>
-                            <Redirect to={"/"}/>
+                            <Redirect to={'/'}/>
                         </Switch>
                     </Container>
                 </Router>

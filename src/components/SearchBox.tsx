@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from 'react';
 import { Button, FormControl, InputGroup } from 'react-bootstrap';
 
 interface propsType {

@@ -3,8 +3,6 @@ import { SagaIterator } from 'redux-saga';
 
 import { http } from '../../api';
 
-
-// -------------------- type for actions ------------------------------
 enum EmployeeActionTypes {
     SET_EMPLOYEE_NAME = 'app/employee/SET_EMPLOYEE_NAME',
     SET_DATA = 'app/employee/SET_DATA',
@@ -29,12 +27,10 @@ export interface setEmployeeDataAction {
     payload: EmployeeDataType[];
 }
 
-
 export interface setErrorAction {
     type: EmployeeActionTypes.SET_ERROR;
     payload: boolean;
 }
-
 
 export type EmployeeAction =
     setEmployeeNameAction |
@@ -43,10 +39,6 @@ export type EmployeeAction =
     setErrorAction |
     getDataAction |
     getEmployeeDataAction;
-// -------------------- type for actions ------------------------------
-
-
-// -------------------- type for state -------------------------------------
 
 export interface EmployeeDataType {
     'direct-subordinates': string[];
@@ -65,8 +57,6 @@ const initialState: EmployeeState = {
     employeeData: [],
     isError: false
 };
-// -------------------- type for state -------------------------------------
-
 
 const employeeReducer = (state = initialState, action: EmployeeAction): EmployeeState => {
     switch (action.type) {
@@ -97,27 +87,35 @@ const employeeReducer = (state = initialState, action: EmployeeAction): Employee
 
 export default employeeReducer;
 
-export const setEmployeeName = (payload: string): setEmployeeNameAction => ({type: EmployeeActionTypes.SET_EMPLOYEE_NAME, payload});
+export const setEmployeeName = (payload: string): setEmployeeNameAction => ({
+    type: EmployeeActionTypes.SET_EMPLOYEE_NAME,
+    payload
+});
 
 export const setData = (payload: string[]): setDataAction => ({type: EmployeeActionTypes.SET_DATA, payload});
 
 export interface getDataAction {
     type: EmployeeActionTypes.GET_DATA;
 }
+
 export const getData = (): getDataAction => ({type: EmployeeActionTypes.GET_DATA});
 
-export const setEmployeeData = (payload: EmployeeDataType[]): setEmployeeDataAction => ({type: EmployeeActionTypes.SET_EMPLOYEE_DATA, payload});
+export const setEmployeeData = (payload: EmployeeDataType[]): setEmployeeDataAction => ({
+    type: EmployeeActionTypes.SET_EMPLOYEE_DATA,
+    payload
+});
 
 export interface getEmployeeDataAction {
     type: EmployeeActionTypes.GET_EMPLOYEE_DATA;
     payload: string;
 }
 
-export const getEmployeeData = (payload: string): getEmployeeDataAction => ({type: EmployeeActionTypes.GET_EMPLOYEE_DATA, payload});
+export const getEmployeeData = (payload: string): getEmployeeDataAction => ({
+    type: EmployeeActionTypes.GET_EMPLOYEE_DATA,
+    payload
+});
 
 export const setError = (payload: boolean): setErrorAction => ({type: EmployeeActionTypes.SET_ERROR, payload});
-
-
 
 export function* workerFetchData(): SagaIterator {
     const data: string[] = yield call(() => http());
@@ -129,8 +127,7 @@ export function* workerFetchEmployee(action: getEmployeeDataAction): SagaIterato
         const name: string = action.payload;
         const data: EmployeeDataType[] = yield call(() => http(name));
         yield put(setEmployeeData(data));
-    }
-    catch (e) {
+    } catch (e) {
         yield put(setError(true));
     }
 }
@@ -142,4 +139,3 @@ export function* watcherFetchData() {
 export function* watcherFetchEmployee() {
     yield takeEvery(EmployeeActionTypes.GET_EMPLOYEE_DATA, workerFetchEmployee);
 }
-
