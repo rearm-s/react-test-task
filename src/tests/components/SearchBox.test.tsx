@@ -5,15 +5,11 @@ import { SearchBox } from './../../components';
 
 configure({adapter: new Adapter()});
 
-let employee = 'test';
+const employee = 'test';
 
-const handleOnChange = (name: string) => {
-    employee = name;
-};
+const handleOnChange = jest.fn();
 
-const handleOnSearch = () => {
-    return null;
-};
+const handleOnSearch = jest.fn();
 
 let wrapper: any;
 

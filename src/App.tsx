@@ -1,6 +1,5 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from 'react-redux';
 import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
@@ -9,6 +8,7 @@ import { Employee, Header, Home } from './components';
 
 import { StyledContainer, StyledWrapper, theme } from './styled/_Global';
 import store from './redux/store';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => (
     <ThemeProvider theme={theme}>
